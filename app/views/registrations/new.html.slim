@@ -1,0 +1,8 @@
+h1 Inscription
+
+= simple_form_for @rm.user, url: registrations_path do |form|
+  = form.input :username
+  = form.input :email
+  = form.input :password
+  = form.input :password_confirmation
+  = form.submit

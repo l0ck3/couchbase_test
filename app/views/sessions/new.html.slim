@@ -1,0 +1,6 @@
+h1 Login
+
+= simple_form_for :credentials, url: sessions_path do |form|
+  = form.input :login
+  = form.input :password
+  = form.submit 'Log In'

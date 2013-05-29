@@ -21,6 +21,12 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+group :test do
+  gem 'shoulda-matchers', '1.5.0'
+  gem 'fabrication'
+  gem 'database_cleaner'
+end
+
 group :development, :test do
   gem 'rspec-rails', '~> 2.0'
   gem 'guard'
@@ -30,10 +36,14 @@ group :development, :test do
   gem 'rb-fsevent', :require => false
   gem 'ruby_gntp'
   gem 'growl'
-  gem 'shoulda-matchers'
 end
 
 gem 'jquery-rails'
+
+gem 'sorcery'
+gem 'simple_form'
+gem 'decent_exposure'
+gem 'slim'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
