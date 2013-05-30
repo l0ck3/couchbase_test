@@ -7,10 +7,12 @@ class Article
 
   attr_reader :id, :created_at, :updated_at
 
-  attribute :title,    String
-  attribute :content,  String
-  attribute :user_id,  Integer
-  attribute :username, String
+  attribute :content,     String
+  attribute :created_at,  String  # TODO : Implement custom serialization and remove it from attributes
+  attribute :updated_at,  String  # TODO : Implement custom serialization and remove it from attributes
+  attribute :title,       String
+  attribute :user_id,     Integer
+  attribute :username,    String
 
   validates :title,    presence: true
   validates :content,  presence: true
