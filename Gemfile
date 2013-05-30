@@ -44,6 +44,9 @@ gem 'sorcery'
 gem 'simple_form'
 gem 'decent_exposure'
 gem 'slim'
+gem 'virtus'
+gem 'couchbase'
+
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

@@ -1,0 +1,6 @@
+h1 Nouvel article
+
+= simple_form_for @rm.article, url: articles_path do |form|
+  = form.input :title
+  = form.input :content, as: :text
+  = form.submit
