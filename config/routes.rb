@@ -1,7 +1,7 @@
 AlertiTest::Application.routes.draw do
 
 
-  resources :articles, only: [:index, :new, :create, :delete]
+  resources :articles, except: [:edit, :update]
   resources :registrations, only: [:new, :create]
   resources :sessions, only: [:new, :create, :destroy]
 

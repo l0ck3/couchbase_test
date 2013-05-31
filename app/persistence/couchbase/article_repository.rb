@@ -7,9 +7,13 @@ module Couchbase
       ddoc = bucket.design_docs["article"]
 
       ddoc.all_articles_by_date(descending: true, limit: limit).map do |row|
-        row.value[:id] = row.id
+        row.value['id'] = row.id
         row.value
       end
+    end
+
+    def self.get(id)
+      Article.new bucket.get(id)
     end
 
     def self.save(article)
@@ -37,10 +41,7 @@ module Couchbase
     def self.bucket
       @bucket ||= Couchbase.new(bucket: "alerti-test",
       :node_list => [
-        '192.168.42.101',
-        '192.168.42.102',
-        '192.168.42.103',
-        '192.168.42.104'
+        '192.168.42.101'
         ])
     end
 

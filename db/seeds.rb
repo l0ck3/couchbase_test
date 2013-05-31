@@ -7,7 +7,7 @@ user = User.first
 100000.times do
   article = Article.new(
     title: Faker::Lorem.sentence,
-    content: Faker::Lorem.paragraphs(rand(50) + 1)
+    content: Faker::Lorem.paragraphs(rand(50) + 1).join
   )
 
   article.user = user
