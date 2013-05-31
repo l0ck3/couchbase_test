@@ -35,7 +35,13 @@ module Couchbase
     end
 
     def self.bucket
-      @bucket ||= Couchbase.new(bucket: "alerti-test", hostname: "192.168.42.101")
+      @bucket ||= Couchbase.new(bucket: "alerti-test",
+      :node_list => [
+        '192.168.42.101',
+        '192.168.42.102',
+        '192.168.42.103',
+        '192.168.42.104'
+        ])
     end
 
   end

@@ -7,10 +7,12 @@ table
       th Auteur
       th Date de publication
       th
-    tr
-      - @articles.each do |article|
-        td = article.title
-        td = article.username
-        td = article.created_at
+  tbody
+    - @rm.articles.each do |article|
+      tr
+        td = article['title']
+        td = article['username']
+        td = article['created_at']
         td
-          = link_to 'Supprimer', article_path, method: :delete
+          = link_to 'Supprimer', articles_path, method: :delete
+

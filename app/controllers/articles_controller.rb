@@ -3,7 +3,7 @@ class ArticlesController < ApplicationController
   before_filter :require_login, only: [:new, :create]
 
   def index
-    @articles = ListLastArticles.new.exec
+    @rm = ListLastArticles.new.exec
   end
 
   def new

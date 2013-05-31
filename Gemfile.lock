@@ -59,6 +59,7 @@ GEM
     fabrication (2.7.1)
     faraday (0.8.7)
       multipart-post (~> 1.1)
+    ffaker (1.16.1)
     ffi (1.8.1)
     formatador (0.2.4)
     growl (1.0.3)
@@ -209,6 +210,7 @@ DEPENDENCIES
   database_cleaner
   decent_exposure
   fabrication
+  ffaker
   growl
   guard
   guard-rspec

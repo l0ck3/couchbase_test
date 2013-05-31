@@ -36,6 +36,7 @@ group :development, :test do
   gem 'rb-fsevent', :require => false
   gem 'ruby_gntp'
   gem 'growl'
+  gem 'ffaker'
 end
 
 gem 'jquery-rails'
