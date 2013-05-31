@@ -5,12 +5,13 @@ class Article
   include ActiveModel::Conversion
   extend  ActiveModel::Naming
 
-  attr_reader :id, :created_at, :updated_at
+  attr_reader :id
 
   attribute :content,     String
   attribute :created_at,  String  # TODO : Implement custom serialization and remove it from attributes
   attribute :updated_at,  String  # TODO : Implement custom serialization and remove it from attributes
   attribute :title,       String
+  attribute :type,        String  # TODO : Implement custom serialization and remove it from attributes
   attribute :user_id,     Integer
   attribute :username,    String
 
@@ -27,6 +28,10 @@ class Article
 
   def persisted?
     id.present?
+  end
+
+  def type
+    self.class.name.downcase
   end
 
   def user=(user)

@@ -1,1 +1,16 @@
 h1 Articles
+
+table
+  thead
+    tr
+      th Titre
+      th Auteur
+      th Date de publication
+      th
+    tr
+      - @articles.each do |article|
+        td = article.title
+        td = article.username
+        td = article.created_at
+        td
+          = link_to 'Supprimer', article_path, method: :delete

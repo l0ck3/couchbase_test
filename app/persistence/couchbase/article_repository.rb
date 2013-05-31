@@ -3,6 +3,15 @@ require 'securerandom'
 module Couchbase
   class ArticleRepository
 
+    def self.articles_by_date(limit=10)
+      ddoc = bucket.design_docs["article"]
+
+      ddoc.all_articles_by_date(descending: true, limit: limit).map do |row|
+        row.value[:id] = row.id
+        row.value
+      end
+    end
+
     def self.save(article)
       return false unless article.valid?
 

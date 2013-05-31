@@ -3,15 +3,17 @@ require 'couchbase'
 
 module Couchbase
 
+  bucket ||= Couchbase.connect(bucket: "test-alerti-test", hostname: "192.168.42.101")
+  ArticleRepository.instance_variable_set(:@bucket, bucket)
+
   describe ArticleRepository do
 
     FakeUser = Struct.new(:id, :username)
 
     subject { ArticleRepository }
 
-    let(:bucket) do
-      @bucket ||= Couchbase.connect(bucket: "alerti-test", hostname: "192.168.42.101")
-    end
+    #before(:all) { bucket.flush }
+
 
     let(:article) do
       article = Article.new(title: 'An article', content: 'A big content blah blah blah ....')
