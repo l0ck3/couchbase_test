@@ -4,7 +4,7 @@
 
 user = User.first
 
-# 100000.times do
+# 10000.times do
 #   article = Article.new(
 #     title: Faker::Lorem.sentence,
 #     content: Faker::Lorem.paragraphs(rand(50) + 1).join
@@ -24,7 +24,7 @@ user = User.first
 1000000.times do |i|
   comment = Comment.new(
     content: "#{i} - I am a comment",
-    article_id: "ee521eab-6347-4de3-86f9-a09b6d48eb94"
+    article_id: "edd3c118-2d58-4887-b16b-793ddc211322"
   )
 
   comment.user = user

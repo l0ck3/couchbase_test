@@ -4,7 +4,7 @@ module Couchbase
   class ArticleRepository
 
     def self.articles_by_date(limit=10)
-      ddoc = bucket.design_docs["article"]
+      ddoc = bucket.design_docs["alerti_test"]
 
       ddoc.all_articles_by_date(descending: true, limit: limit).map do |row|
         row.value['id'] = row.id
@@ -41,7 +41,7 @@ module Couchbase
     def self.bucket
       @bucket ||= Couchbase.new(bucket: "alerti-test",
       :node_list => [
-        '192.168.42.101'
+        '192.168.50.101'
         ])
     end
 
