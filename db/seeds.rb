@@ -4,18 +4,34 @@
 
 user = User.first
 
-100000.times do
-  article = Article.new(
-    title: Faker::Lorem.sentence,
-    content: Faker::Lorem.paragraphs(rand(50) + 1).join
+# 100000.times do
+#   article = Article.new(
+#     title: Faker::Lorem.sentence,
+#     content: Faker::Lorem.paragraphs(rand(50) + 1).join
+#   )
+
+#   article.user = user
+
+#   begin
+#     Couchbase::ArticleRepository.save(article)
+#   rescue Exception => e
+#     puts "Article write failed ! : #{e}"
+#   end
+
+# end
+
+
+1000000.times do |i|
+  comment = Comment.new(
+    content: "#{i} - I am a comment",
+    article_id: "ee521eab-6347-4de3-86f9-a09b6d48eb94"
   )
 
-  article.user = user
+  comment.user = user
 
   begin
-    Couchbase::ArticleRepository.save(article)
+    Couchbase::CommentRepository.save(comment)
   rescue Exception => e
-    puts "Article write failed ! : #{e}"
+    puts "Comment write failed ! : #{e}"
   end
-
 end

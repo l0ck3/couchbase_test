@@ -1,6 +1,4 @@
 class ApplicationController < ActionController::Base
-  include Interactors
-
   protect_from_forgery
 
 protected

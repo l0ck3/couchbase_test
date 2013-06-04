@@ -1,8 +1,8 @@
 class ArticlesController < ApplicationController
-  before_filter :require_login, only: [:new, :create]
+  before_filter :require_login, only: [:new, :create, :delete]
 
   def index
-    @rm = Articles::ListLastArticles.new.exec
+    @rm = ListLastArticles.new.exec
   end
 
   def new
@@ -15,7 +15,16 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    @rm = Articles::ShowArticle.new.exec(params[:id])
+    @rm  = ShowArticle.new.exec(params[:id])
+    @cm  = NewComment.new(params[:id]).exec
+    @csm = ListCommentsForArticle.new().exec(params[:id])
   end
+
+  # HELPER METHODS
+
+  # def current_user
+  #   @current_user ||= User.find_by_id!(session[:user_id])
+  # end
+  # helper_method :current_user
 
 end

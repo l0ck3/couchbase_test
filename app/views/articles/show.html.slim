@@ -2,3 +2,20 @@ h1 = @rm.article.title
 
 p = @rm.article.content
 
+
+- if logged_in?
+
+  h2 Commentez
+
+  = simple_form_for @cm.comment do |form|
+    = form.input :article_id, as: :hidden
+    = form.input :content, as: :text, label: false
+    = form.submit
+
+  h2 Commentaires
+  - @csm.comments.each do |comment|
+    strong
+      = comment['username']
+    p
+      = comment['content']
+    hr
