@@ -6,7 +6,8 @@ function(doc){
       username: doc.username,
       user_id: doc.user_id,
       created_at: doc.created_at,
-      moderation: doc.moderation
+      moderation: doc.moderation,
+      article_id: doc.article_id
     });
   }
 }

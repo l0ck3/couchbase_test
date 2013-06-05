@@ -55,9 +55,11 @@ module Couchbase
       collection
     end
 
-    # def self.get(id)
-    #   comment.new bucket.get(id)
-    # end
+    def self.get(id)
+      comment = Comment.new bucket.get(id)
+      comment.instance_variable_set(:@id, id) if comment # TODO : Do something better
+      comment
+    end
 
     def self.save(comment)
       return false unless comment.valid?
@@ -77,6 +79,7 @@ module Couchbase
 
     private
 
+    # TODO : This is application logic. It doesn't belong to the persistence layer. Move it to interactor.
     def self.boundaries_for_moderation_status(status)
       result = case status
         when '1' then {end: 'null',   start: 'null\u0fff'}

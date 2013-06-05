@@ -31,6 +31,14 @@ br
     = comment['created_at']
     | &nbsp; par &nbsp;
   strong = comment['username']
+  | &nbsp; Statut: &nbsp;
+  = comment['moderation']
+  br
+  = link_to 'Négative', admin_comments_moderations_path(id: comment['id'], value: -1), method: :post
+  br
+  = link_to 'Neutre', admin_comments_moderations_path(id: comment['id'], value: 0), method: :post
+  br
+  = link_to 'Positive', admin_comments_moderations_path(id: comment['id'], value: 1), method: :post
   hr
 
 = paginate @comments.comments

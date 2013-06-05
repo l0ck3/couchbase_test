@@ -13,6 +13,7 @@ class Comment
   attribute :updated_at,  String  # TODO : Implement custom serialization and remove it from attributes
   attribute :user_id,     Integer
   attribute :username,    String
+  attribute :moderation,  Integer
 
 
   validates :article_id,  presence: true
@@ -20,14 +21,18 @@ class Comment
   validates :user_id,     presence: true
   validates :username,    presence: true
 
-  def touch
-    now         = Time.now.utc
-    @created_at = now if @created_at.nil?
-    @updated_at = now
+  def moderate(value)
+    self.moderation = value
   end
 
   def persisted?
     id.present?
+  end
+
+  def touch
+    now         = Time.now.utc
+    @created_at = now if @created_at.nil?
+    @updated_at = now
   end
 
   def type
