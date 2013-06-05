@@ -23,8 +23,8 @@ user = User.first
 
 1000000.times do |i|
   comment = Comment.new(
-    content: "#{i} - I am a comment",
-    article_id: "edd3c118-2d58-4887-b16b-793ddc211322"
+    content: "#{i} - A comment", #Faker::Lorem.paragraphs(rand(50) + 1).join,
+    article_id: "179a2a10-f4ed-4ac5-b763-4af210da247f"
   )
 
   comment.user = user

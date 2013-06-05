@@ -5,6 +5,10 @@ AlertiTest::Application.routes.draw do
   resources :registrations, only: [:new, :create]
   resources :sessions, only: [:new, :create, :destroy]
 
+  namespace :admin do
+    resources :comments_moderations, only: [:index, :create]
+  end
+
   root to: 'articles#index'
 
   # The priority is based upon order of creation:

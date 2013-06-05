@@ -12,13 +12,47 @@ module Couchbase
     #   end
     # end
 
-    def self.comments_for_article_by_date(article_id, limit=10)
-      ddoc = bucket.design_docs['alerti_test']
+    def self.moderated_comments_for_article_by_date(article_id, limit=10)
+      ddoc = bucket.design_docs['comment']
 
-      ddoc.all_comments_for_article_by_date(end_key: [article_id], start_key: ["#{article_id}\u0fff"], descending: true, limit: limit).map do |row|
+      ddoc.moderated_comments_for_article_by_date(end_key: [article_id], start_key: ["#{article_id}\u0fff"], descending: true, limit: limit).map do |row|
         row.value['id'] = row.id
         row.value
       end
+    end
+
+    def self.all_comments_for_article_by_date(article_id, moderation_status, page, limit=10)
+      ddoc = bucket.design_docs['comment']
+
+      params = {
+        endkey: [article_id],
+        startkey: ["#{article_id}"],
+        limit: limit,
+        descending: true
+      }
+
+      if result = boundaries_for_moderation_status(moderation_status)
+        params[:startkey] << result[:start]
+        params[:endkey] << result[:end]
+      else
+        params[:startkey][0] += '\u0fff'
+      end
+
+      count = ddoc.all_comments_for_article_by_date(params).first
+
+      count = count ? count.value : 0
+
+      collection = Collection.new(page, limit, count)
+
+      params.merge!(skip: collection.skip_value, reduce: false) # TODO : Skip is slow. Find a way to manage it with keys
+
+      results = ddoc.all_comments_for_article_by_date(params).map do |row|
+        row.value['id'] = row.id
+        row.value
+      end
+
+      collection.array = results
+      collection
     end
 
     # def self.get(id)
@@ -41,8 +75,20 @@ module Couchbase
       comment
     end
 
-  private
+    private
 
+    def self.boundaries_for_moderation_status(status)
+      result = case status
+        when '1' then {end: 'null',   start: 'null\u0fff'}
+        when '2' then {end: -1000, start: 1000}
+        when '3' then {end: 1,     start: 1000}
+        when '4' then {end: -1000, start: -1 }
+        when '5' then {end: 0,     start: 0}
+        else false
+      end
+    end
+
+    # TODO : Factor following code in parent Repository class
     def self.generate_id
       SecureRandom.uuid
     end
@@ -51,8 +97,13 @@ module Couchbase
       @bucket ||= Couchbase.new(bucket: "alerti-test",
       :node_list => [
         '192.168.50.101'
-        ])
+      ])
     end
+
+
 
   end
 end
+
+
+

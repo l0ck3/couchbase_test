@@ -4,7 +4,7 @@ module Couchbase
   class ArticleRepository
 
     def self.articles_by_date(limit=10)
-      ddoc = bucket.design_docs["alerti_test"]
+      ddoc = bucket.design_docs["article"]
 
       ddoc.all_articles_by_date(descending: true, limit: limit).map do |row|
         row.value['id'] = row.id
@@ -13,12 +13,12 @@ module Couchbase
     end
 
     def self.count_total_articles
-      ddoc = bucket.design_docs["alerti_test"]
+      ddoc = bucket.design_docs["article"]
       ddoc.count_total_articles.first.value
     end
 
     def self.delete(id)
-      ddoc = bucket.design_docs["alerti_test"]
+      ddoc = bucket.design_docs["comment"] # TODO : Move the deletion part in Comments repo and call from there
 
       comments_ids = ddoc.comments_ids_for_article().each do |row|
         bucket.delete(row.value)
@@ -28,7 +28,9 @@ module Couchbase
     end
 
     def self.get(id)
-      Article.new bucket.get(id)
+      article = Article.new bucket.get(id)
+      article.instance_variable_set(:@id, id) if article # TODO : Do something better
+      article
     end
 
     def self.save(article)

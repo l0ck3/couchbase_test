@@ -16,4 +16,9 @@ class User < ActiveRecord::Base
 
   validates :password_confirmation, presence: true
 
+
+  def admin?
+    self.admin
+  end
+
 end

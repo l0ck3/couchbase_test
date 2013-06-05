@@ -13,6 +13,9 @@ p = @rm.article.content
     = form.submit
 
   h2 Commentaires
+
+  - if current_user.admin?
+    = link_to 'Modérer les commentaires', admin_comments_moderations_path(id: @rm.article.id)
   - @csm.comments.each do |comment|
     strong
       = comment['username']

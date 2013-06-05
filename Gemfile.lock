@@ -86,6 +86,10 @@ GEM
     json (1.8.0)
     jwt (0.1.8)
       multi_json (>= 1.5)
+    kaminari (0.13.0)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      railties (>= 3.0.0)
     kgio (2.8.0)
     listen (1.1.4)
       rb-fsevent (>= 0.9.3)
@@ -222,6 +226,7 @@ DEPENDENCIES
   guard-rspec
   guard-spork
   jquery-rails
+  kaminari
   mysql2
   rails (= 3.2.13)
   rb-fsevent
