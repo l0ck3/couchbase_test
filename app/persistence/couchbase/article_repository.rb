@@ -18,6 +18,12 @@ module Couchbase
     end
 
     def self.delete(id)
+      ddoc = bucket.design_docs["alerti_test"]
+
+      comments_ids = ddoc.comments_ids_for_article().each do |row|
+        bucket.delete(row.value)
+      end
+
       bucket.delete(id)
     end
 

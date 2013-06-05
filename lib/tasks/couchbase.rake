@@ -4,6 +4,7 @@ namespace :couchbase do
     views = [
       'all_articles_by_date',
       'all_comments_for_article_by_date',
+      'comments_ids_for_article',
       'count_total_articles'
     ]
 
