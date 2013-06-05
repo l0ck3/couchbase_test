@@ -2,6 +2,7 @@ class ArticlesController < ApplicationController
   before_filter :require_login, only: [:new, :create, :delete]
 
   def index
+    @rcount = CountTotalArticles.new.exec
     @rm = ListLastArticles.new.exec
   end
 

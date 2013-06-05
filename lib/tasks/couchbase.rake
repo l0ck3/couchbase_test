@@ -3,7 +3,8 @@ namespace :couchbase do
   task :setup => :environment do
     views = [
       'all_articles_by_date',
-      'all_comments_for_article_by_date'
+      'all_comments_for_article_by_date',
+      'count_total_articles'
     ]
 
     c = Couchbase.new(bucket: "alerti-test", :node_list => ['192.168.50.101'])

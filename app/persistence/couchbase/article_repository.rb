@@ -12,6 +12,11 @@ module Couchbase
       end
     end
 
+    def self.count_total_articles
+      ddoc = bucket.design_docs["alerti_test"]
+      ddoc.count_total_articles.first.value
+    end
+
     def self.get(id)
       Article.new bucket.get(id)
     end
