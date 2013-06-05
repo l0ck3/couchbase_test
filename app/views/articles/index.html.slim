@@ -14,5 +14,5 @@ table
         td = article['username']
         td = article['created_at']
         td
-          = link_to 'Supprimer', articles_path, method: :delete
+          = link_to 'Supprimer', article_path(article['id']), method: :delete, confirm: 'Etes vous sûr ?'
 

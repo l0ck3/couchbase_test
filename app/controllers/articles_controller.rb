@@ -21,6 +21,11 @@ class ArticlesController < ApplicationController
     @csm = ListCommentsForArticle.new().exec(params[:id])
   end
 
+  def destroy
+    DeleteArticle.new.exec(params[:id])
+    redirect_to action: :index
+  end
+
   # HELPER METHODS
 
   # def current_user

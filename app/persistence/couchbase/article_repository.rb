@@ -17,6 +17,10 @@ module Couchbase
       ddoc.count_total_articles.first.value
     end
 
+    def self.delete(id)
+      bucket.delete(id)
+    end
+
     def self.get(id)
       Article.new bucket.get(id)
     end
