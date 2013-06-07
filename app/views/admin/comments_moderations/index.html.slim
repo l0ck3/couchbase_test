@@ -1,15 +1,17 @@
 h1 = "Commentaires à modérer pour l'article : #{@article.article.title}"
 
+table
+  thead
+    tr
+      th Statut
+      th Nombre de commentaires
+
 = simple_form_for :filter, method: :get, url: admin_comments_moderations_path do |form|
   /= form.input :id, as: :hidden, input_html: { value: @article.article.id }
   = hidden_field_tag :id, @article.article.id
   = form.input :moderation, label: 'Filtrer par', as: :select, include_blank: false, collection: {'tous' => 0, 'non modérés' => 1, 'modérés' => 2, 'positifs' => 3, 'négatifs' => 4, 'neutres' => 5}, selected: params[:filter][:moderation]
   = form.submit 'Filtrer'
 
-br
-strong
-  | TOTAL :
-  = @comments.comments.total_rows
 br
 
 / = form_tag admin_comments_moderations_path, method: :get do

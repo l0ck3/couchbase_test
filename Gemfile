@@ -46,7 +46,7 @@ gem 'simple_form'
 gem 'decent_exposure'
 gem 'slim'
 gem 'virtus'
-gem 'couchbase'
+gem 'couchbase', '1.3.0'
 
 
 # To use ActiveModel has_secure_password
@@ -59,7 +59,7 @@ gem 'couchbase'
 gem 'unicorn'
 
 # Deploy with Capistrano
-# gem 'capistrano'
+gem 'capistrano'
 
 # To use debugger
 # gem 'debugger'

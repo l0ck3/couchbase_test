@@ -18,7 +18,11 @@ namespace :couchbase do
       }
     }
 
-    c = Couchbase.new(bucket: "alerti-test", :node_list => ['192.168.50.101'])
+      c = Couchbase.new(
+        bucket: "alerti-test",
+        :hostname => 'ec2-54-216-72-40.eu-west-1.compute.amazonaws.com',
+        :password => 'muy8(uah'
+      )
 
     base_path = ::File.expand_path('../../../db/couchbase/',  __FILE__)
     #design_document = 'alerti_test'
