@@ -1,11 +1,9 @@
 class ListLastArticles
 
-  def exec
-    articles = Couchbase::ArticleRepository.articles_by_date(10)
+  def do
+    articles = ArticleRepository.all_articles_by_date
+
     Response.new(articles: articles)
   end
 
 end
-
-
-

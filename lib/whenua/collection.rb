@@ -1,4 +1,4 @@
-module Couchbase
+module Whenua
   class Collection
     attr_writer :array
 

@@ -2,27 +2,27 @@ class ArticlesController < ApplicationController
   before_filter :require_login, only: [:new, :create, :delete]
 
   def index
-    @rcount = CountTotalArticles.new.exec
-    @rm = ListLastArticles.new.exec
+    @rcount = CountTotalArticles.new.do
+    @rm = ListLastArticles.new.do
   end
 
   def new
-    @rm = NewArticle.new.exec
+    @rm = NewArticle.new.do
   end
 
   def create
-    @rm = CreateArticle.new.exec(params[:article], current_user)
+    @rm = CreateArticle.new.do(params[:article], current_user)
     @rm.success? ? redirect_to(articles_path) : render(:new)
   end
 
   def show
-    @rm  = ShowArticle.new.exec(params[:id])
-    @cm  = NewComment.new(params[:id]).exec
-    @csm = ListCommentsForArticle.new().exec(params[:id])
+    @rm  = ShowArticle.new.do(params[:id])
+    @cm  = NewComment.new(params[:id]).do
+    @csm = ListCommentsForArticle.new().do(params[:id])
   end
 
   def destroy
-    DeleteArticle.new.exec(params[:id])
+    DeleteArticle.new.do(params[:id])
     redirect_to action: :index
   end
 

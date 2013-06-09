@@ -20,8 +20,7 @@ namespace :couchbase do
 
       c = Couchbase.new(
         bucket: "alerti-test",
-        :hostname => 'ec2-54-216-72-40.eu-west-1.compute.amazonaws.com',
-        :password => 'muy8(uah'
+        :hostname => 'localhost'
       )
 
     base_path = ::File.expand_path('../../../db/couchbase/',  __FILE__)

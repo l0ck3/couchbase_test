@@ -1,13 +1,13 @@
 AlertiTest::Application.routes.draw do
 
   resources :articles, except: [:edit, :update]
-  resources :comments, only: :create
-  resources :registrations, only: [:new, :create]
-  resources :sessions, only: [:new, :create, :destroy]
+  # resources :comments, only: :create
+  # resources :registrations, only: [:new, :create]
+  # resources :sessions, only: [:new, :create, :destroy]
 
-  namespace :admin do
-    resources :comments_moderations, only: [:index, :create]
-  end
+  # namespace :admin do
+  #   resources :comments_moderations, only: [:index, :create]
+  # end
 
   root to: 'articles#index'
 
