@@ -2,10 +2,13 @@ require "rvm/capistrano"
 require "bundler/capistrano"
 
 set :deploy_to, "/home/deployer/alerti-test"
+set :deploy_via, :copy
+set :copy_remote_dir, "#{shared_path}/tmp"
+set :copy_strategy, :export
 set :repository,  "git@bitbucket.org:wengee-tek/alerti-test.git"
 set :rvm_ruby_string, "2.0.0-p195@alerti-test"
 set :use_sudo, false
-set :deploy_via, :remote_cache
+# set :deploy_via, :remote_cache
 
 set :user, "deployer"
 role :web, "82.196.4.238"
