@@ -2,3 +2,8 @@ development:
   :host: localhost
   :port: 8091
   :bucket: alerti-test
+
+production:
+  :host: 82.196.1.138
+  :port: 8091
+  :bucket: alerti-test
