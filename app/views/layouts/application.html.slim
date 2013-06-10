@@ -1,0 +1,58 @@
+doctype
+html
+  head
+    title AlertiTest
+    = stylesheet_link_tag    "application", :media => "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+  body
+    .row
+      .large-12.columns
+        nav.top-bar
+          ul.title-area
+            li.name
+              h1 = link_to 'Alerti', root_path
+
+          section.top-bar-section
+            ul.right
+              - unless current_user
+                li
+                  = link_to 'Connexion', new_session_path
+              - else
+                li
+                  a
+                    ' Bonjour
+                    = current_user.username
+                li.divider
+                li
+                  = link_to 'Déconnexion', session_path(current_user), method: :delete
+
+    .row
+      .large-12.columns
+        - if notice
+          .alert-box.success data-alert=''
+            = notice
+            a.close href="#" &times;
+        - if alert
+          .alert-box.alert = alert
+            a.close href="#" &times;
+
+    .row
+      .large-12.columns role="heading"
+        = yield :heading
+      hr
+
+    .row
+      .large-9.columns
+        = yield
+
+      aside.large-3.columns
+        .panel
+          = yield :side_content
+
+    footer.row
+      .large-12.columns
+        hr
+        .row
+          .large-6.columns
+            p &copy; Wengee

@@ -1,6 +1,6 @@
 class CreateArticle
 
-  def exec(params, poster)
+  def do(params, poster)
     article      = Article.new(params)
     article.user = poster
 

@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module Admin
   class ModerateComment
 
@@ -5,11 +7,13 @@ module Admin
       @user = user
     end
 
-    def exec(comment_id, moderation)
-      comment = Couchbase::CommentRepository.get(comment_id)
+    def do(comment_id, moderation)
+      raise 'Opération non permise' unless @user.admin?
+
+      comment = CommentRepository.find_by_id(comment_id)
 
       comment.moderate(moderation)
-      Couchbase::CommentRepository.save(comment)
+      CommentRepository.save(comment)
       Response.new(comment: comment)
     end
 

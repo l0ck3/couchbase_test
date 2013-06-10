@@ -4,7 +4,7 @@ class NewComment
     @article_id = article_id
   end
 
-  def exec
+  def do
     comment = Comment.new(article_id: @article_id)
     Response.new(comment: comment)
   end

@@ -1,17 +1,18 @@
-h1 = "Articles - Total : #{@rcount.count}"
+- content_for :side_content do
+  h5
+    | Total des articles
+  br
+  = @rcount.count
 
-table
-  thead
-    tr
-      th Titre
-      th Auteur
-      th Date de publication
-      th
-  tbody
-    - @rm.articles.each do |article|
-      tr
-        td = link_to article.title, article_path(article.id)
-        td = article.username
-        td = article.created_at
-        td
-          = link_to 'Supprimer', article_path(article.id), method: :delete, confirm: 'Etes vous sûr ?'
+-content_for :heading do
+  .large-6.columns
+    h1
+      | Derniers articles
+  .right
+    = link_to 'Rédiger un article', new_article_path, class: 'button success'
+
+
+- @rm.articles.each_with_index do |article, i|
+  = render 'list_article', article: article
+  - if i < (@rm.articles.length - 1)
+    hr

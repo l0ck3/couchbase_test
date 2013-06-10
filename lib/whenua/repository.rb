@@ -34,8 +34,8 @@ module Whenua
         @data_store = store
       end
 
-      def delete(object)
-        data_store.delete(object.id)
+      def delete(id)
+        data_store.delete(id)
         nil
       end
 
@@ -57,8 +57,8 @@ module Whenua
         end
       end
 
-      def index(name, params={})
-        _build_index_method(name, params)
+      def index(name)
+        _build_index_method(name)
       end
 
       def klass
@@ -94,10 +94,10 @@ module Whenua
       end
 
       # TODO : Cleanup this method
-      def _build_index_method(index_name, params)
+      def _build_index_method(index_name)
         metaclass = class << self; self; end
         metaclass.class_eval do
-          define_method(index_name) do |*args|
+          define_method(index_name) do |params={}|
             default_params = { limit: 100 }
             rows = data_store.design_docs[klass.to_s.downcase].send(index_name, default_params.merge(params)).fetch
             rows.map! do |row|

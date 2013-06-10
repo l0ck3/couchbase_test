@@ -1,7 +1,7 @@
 class DeleteArticle
 
-  def exec(id)
-    article = Couchbase::ArticleRepository.delete(id)
+  def do(id)
+    ArticleRepository.delete(id)
   end
 
 end

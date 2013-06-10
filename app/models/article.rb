@@ -1,18 +1,10 @@
 
 class Article
   include Whenua::Entity
-  # include Virtus
-  # include ActiveModel::Validations
-  # include ActiveModel::Conversion
-  # extend  ActiveModel::Naming
-
-  #attr_reader :id
+  extend ActiveModel::Naming # FIXME : Alreadi present in Entity. Find why it is necessary to include it here again
 
   attribute :content,     String
-  #attribute :created_at,  String  # TODO : Implement custom serialization and remove it from attributes
-  #attribute :updated_at,  String  # TODO : Implement custom serialization and remove it from attributes
   attribute :title,       String
-  #attribute :type,        String  # TODO : Implement custom serialization and remove it from attributes
   attribute :user_id,     Integer
   attribute :username,    String
 
@@ -20,20 +12,6 @@ class Article
   # validates :content,  presence: true
   # validates :user_id,  presence: true
   # validates :username, presence: true
-
-  # def touch
-  #   now         = Time.now.utc
-  #   @created_at = now if @created_at.nil?
-  #   @updated_at = now
-  # end
-
-  # def persisted?
-  #   id.present?
-  # end
-
-  # def type
-  #   self.class.name.downcase
-  # end
 
   def user=(user)
     self.user_id  = user.id

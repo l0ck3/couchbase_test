@@ -59,8 +59,10 @@ module Whenua
       end
 
       def get(key)
-        doc = client.get(key)
-        doc.merge({ key: key })
+        doc = {
+          data: client.get(key),
+          key: key
+        }
       end
 
       private

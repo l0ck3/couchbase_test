@@ -22,7 +22,7 @@ module Whenua
       (current_page - 1) * limit_value
     end
 
-    def num_pages
+    def total_pages
       total_rows / limit_value + (total_rows % limit_value != 0 ? 1 : 0)
     end
 

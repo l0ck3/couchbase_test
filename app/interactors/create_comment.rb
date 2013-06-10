@@ -8,7 +8,7 @@ class CreateComment
     comment      = Comment.new(params)
     comment.user = @user
 
-    if Couchbase::CommentRepository.save(comment)
+    if CommentRepository.save(comment)
       Response.new(comment: comment)
     else
       Response.new(comment: comment, errors: comment.errors)

@@ -1,4 +1,5 @@
-h1 = @rm.article.title
+- content_for :heading
+  h1 = @rm.article.title
 
 p = @rm.article.content
 
@@ -10,15 +11,18 @@ p = @rm.article.content
   = simple_form_for @cm.comment do |form|
     = form.input :article_id, as: :hidden
     = form.input :content, as: :text, label: false
-    = form.submit
+    = form.submit 'Envoyer', class: 'button success right'
 
-  h2 Commentaires
+hr
 
-  - if current_user.admin?
-    = link_to 'Modérer les commentaires', admin_comments_moderations_path(id: @rm.article.id)
-  - @csm.comments.each do |comment|
-    strong
-      = comment['username']
-    p
-      = comment['content']
-    hr
+h2.large-7.columns Commentaires
+
+- if logged_in? && current_user.admin?
+  = link_to 'Modérer les commentaires', admin_comments_moderations_path(id: @rm.article.id), class: 'button right'
+
+- @csm.comments.each do |comment|
+  strong
+    = comment.username
+  p
+    = comment.content
+  hr

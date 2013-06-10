@@ -1,6 +1,6 @@
 class NewArticle
 
-  def exec
+  def do
     Response.new(article: Article.new)
   end
 
