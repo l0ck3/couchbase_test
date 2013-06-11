@@ -65,8 +65,7 @@ gem 'unicorn'
 # Deploy with Capistrano
 gem 'capistrano'
 gem 'rvm-capistrano'
+gem 'cape'
 
-# To use debugger
-# gem 'debugger'
 
 gem 'kaminari'

@@ -1,5 +1,6 @@
 require "rvm/capistrano"
 require "bundler/capistrano"
+require "cape"
 
 set :deploy_to, "/home/deployer/alerti-test"
 set :deploy_via, :copy
@@ -30,4 +31,8 @@ namespace :rvm do
   task :trust_rvmrc do
     run "rvm rvmrc trust #{release_path}"
   end
+end
+
+Cape do
+  mirror_rake_tasks :dev
 end
