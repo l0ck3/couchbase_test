@@ -33,8 +33,8 @@ module DataGenerator
 
   def self.generate_user
     User.create(
-    username: Faker::Internet.user_name,
-    email: Faker::Internet.email,
+    username: ::Faker::Internet.user_name,
+    email: ::Faker::Internet.email,
     password: 'password',
     password_confirmation: 'password'
     )
@@ -47,8 +47,8 @@ module DataGenerator
 
   def self.generate_article(user)
     article = Article.new(
-    title: Faker::Lorem.sentence,
-    content: Faker::Lorem.paragraphs(rand(10) + 1).join
+    title: ::Faker::Lorem.sentence,
+    content: ::Faker::Lorem.paragraphs(rand(10) + 1).join
     )
 
     article.user = user

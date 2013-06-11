@@ -34,5 +34,7 @@ namespace :rvm do
 end
 
 Cape do
-  mirror_rake_tasks :dev
+  mirror_rake_tasks 'dev' do |recipes|
+    recipes.env['RAILS_ENV'] = lambda { rails_env }
+  end
 end
