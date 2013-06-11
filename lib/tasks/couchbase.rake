@@ -18,13 +18,9 @@ namespace :couchbase do
       }
     }
 
-      c = Couchbase.new(
-        bucket: "alerti-test",
-        :hostname => 'localhost'
-      )
+    c = Whenua.data_store.client
 
     base_path = ::File.expand_path('../../../db/couchbase/',  __FILE__)
-    #design_document = 'alerti_test'
 
     documents.each do |name, value|
       path = File.join(base_path, name.to_s)
