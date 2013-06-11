@@ -1,5 +1,3 @@
-require 'ffaker'
-
 module DataGenerator
 
   def self.client

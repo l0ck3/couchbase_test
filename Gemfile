@@ -35,7 +35,6 @@ group :development, :test do
   gem 'rb-fsevent', :require => false
   gem 'ruby_gntp'
   gem 'growl'
-  gem 'ffaker'
 end
 
 group :development do
@@ -67,5 +66,6 @@ gem 'capistrano'
 gem 'rvm-capistrano'
 gem 'cape'
 
+gem 'ffaker'
 
 gem 'kaminari'
